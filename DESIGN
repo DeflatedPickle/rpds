@@ -5,7 +5,7 @@ A multi-use Python based data storage format that aims to maintain transparency 
 - Headers.
 - Doc Strings for headers.
 - Comments, single and multi-line.
-- Data Types (<type>: data)
+- Data Types (<type>: data).
 
 ### Valid Data Types:
 - `<string>` - a basic string.
@@ -19,26 +19,27 @@ A multi-use Python based data storage format that aims to maintain transparency 
 
 
 - `<path>` - a path to a file.
-- `<folder>` - a folder (used with <path>)
-- `<file>` - a file (used with <path>)
+- `<folder>` - a folder (used with <path>).
+- `<file>` - a file (used with <path>).
 
 
 - `<url>` - a URL.
 
 ### Will Be Able To:
-- Read from files
-- Have files as values
+- Read from files.
+- Use files and folders as values.
 
 ### Rules:
-- Values must be indented with tabs (or that amount of spaces).
-- Values are declared under a header
-- Headers can be declared inside a header
+- Values must be indented with tabs (or four spaces per indent).
+- Values are declared under a header.
+- Headers can be declared under a parent header.
 - Single-line comments should have a space before them.
 
 ### Example:
 ```rpds
+// A C-style comment
 [name=<string>: main header] // A header
-"""This is a header, it holds values."""
+"""This is a header, it holds values.""" // A docstring
     - "key-1": <string>: value // Value inside of header
 
     [name=<string>: sub header] // A header inside header
@@ -54,3 +55,7 @@ A multi-use Python based data storage format that aims to maintain transparency 
     - "key-1": value
     - "key-2": value
 ```
+
+### Getting Values From The File
+- `file["header"]["key"]`
+- `file.header("header").key("key")`
