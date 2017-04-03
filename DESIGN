@@ -1,6 +1,10 @@
 # rpds - Readable Python Data Storage
 A multi-use Python based data storage format that aims to maintain transparency and simplicity in file content, design and syntax.
 
+### To-Do:
+- Figure out how the file will be loaded into Python.
+- Write basic classes.
+
 ### Needs:
 - Headers.
 - Doc Strings for headers.
