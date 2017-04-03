@@ -1,0 +1,56 @@
+# rpds - Readable Python Data Storage
+A multi-use Python based data storage format that aims to maintain transparency and simplicity in file content, design and syntax.
+
+### Needs:
+- Headers.
+- Doc Strings for headers.
+- Comments, single and multi-line.
+- Data Types (<type>: data)
+
+### Valid Data Types:
+- `<string>` - a basic string.
+- `<integer>` - a whole number.
+- `<float>` - a float.
+- `<boolean>` - a boolean.
+
+
+- `<list>` - a list of data.
+- `<dictionary>` - a dictionary of data.
+
+
+- `<path>` - a path to a file.
+- `<folder>` - a folder (used with <path>)
+- `<file>` - a file (used with <path>)
+
+
+- `<url>` - a URL.
+
+### Will Be Able To:
+- Read from files
+- Have files as values
+
+### Rules:
+- Values must be indented with tabs (or that amount of spaces).
+- Values are declared under a header
+- Headers can be declared inside a header
+- Single-line comments should have a space before them.
+
+### Example:
+```rpds
+[name=<string>: main header] // A header
+"""This is a header, it holds values."""
+    - "key-1": <string>: value // Value inside of header
+
+    [name=<string>: sub header] // A header inside header
+    """This subheader shows types of data."""
+        - "key-1": <string>: value // Value inside of sub header
+        - "key-2": <integer>: 7 // An integer inside of sub header
+        - <string>: value2 // If no key is given, the key defaults to it's header
+
+    - "key-2": <string>: value2 // Value inside of the header
+
+[name=<string>: second header, type=<string>] // Declaring type as <string> means all values will be set to string unless another type is given.
+"""This header shows that a type can be given."""
+    - "key-1": value
+    - "key-2": value
+```
