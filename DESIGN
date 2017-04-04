@@ -33,14 +33,18 @@ A multi-use Python based data storage format that aims to maintain transparency 
 
 - `<url>` - a URL.
 
+- `<object>`
+
 ### Will Be Able To:
 - Read from files.
 - Use files and folders as values.
 
 ### Rules:
-- Values must be indented with tabs (or four spaces per indent).
 - Values are declared under a header.
 - Headers can be declared under a parent header.
+
+### Style Rules:
+- Values must be indented with tabs (or four spaces per indent).
 - Single-line comments should have a space before them.
 - Data types must have a space after the colon.
 
