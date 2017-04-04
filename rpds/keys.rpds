@@ -1,0 +1,12 @@
+[name=Header]
+- "bacon": value
+- "santa": <string>: value2
+- value3
+
+    [name=SubHeader]
+    - "crown": sub1
+    - "cool": sub2
+
+        [name=SubSubHeader]
+        - "wolf": subsub1
+        - "round": subsub2

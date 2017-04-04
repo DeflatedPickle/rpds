@@ -1,4 +1,5 @@
 [name=Header]
+    - "key": <string>: a cool value
     - <string>: value
     - <string>: value2
 
@@ -14,4 +15,5 @@
 [name=DefaultDataType, type=<integer>]
 - 1
 - 2
-- <string>: value
+- "key": <string>: value
+- "key": value2
