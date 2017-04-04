@@ -1,3 +1,9 @@
-[name=Header, type=<string>]
-    - value
-    - value2
+[name=Header]
+    - <string>: value
+    - <string>: value2
+    [name=SubHeader]
+    - <string>: value
+    - <string>: value2
+        [name=SubSubHeader]
+        - <string>: value
+        - <string>: value2

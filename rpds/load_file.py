@@ -8,9 +8,9 @@ def load_file(file: str):
     with open(file, "r") as file_open:
         for line in file_open.readlines():
             line = line.strip("\n")
-            if line.startswith("[") and line.endswith("]"):
+            if line.strip(" ").startswith("[") and line.endswith("]"):
                 # The line is a header
-                print("Header: {}".format(line))
+                print("Header: {}".format(line.strip(" ")))
                 header_name = line[line.index("name=") + 5:line.index(line[-1])]
                 if "," in header_name:
                     header_name = header_name[0:header_name.index(",")]
@@ -23,8 +23,10 @@ def load_file(file: str):
                 print("-----------------------------------------------------------------------------------------------")
             elif line.strip(" ").startswith("-"):
                 # The line is an item
-                item_value = line.strip(" ").strip("-").strip(" ")
-                print("Item: {}".format(item_value))
+                item_type = line[line.index("<"):line.index(">") + 1]
+                print("Item Type: {}".format(item_type))
+                item_value = line[line.index(">") + 2:line.index(line[-1]) + 1].strip(" ")
+                print("Item Value: {}".format(item_value))
                 print("-----------------------------------------------------------------------------------------------")
 
 if __name__ == "__main__":
