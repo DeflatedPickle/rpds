@@ -42,6 +42,8 @@ A multi-use Python based data storage format that aims to maintain transparency 
 ### Rules:
 - Values are declared under a header.
 - Headers can be declared under a parent header.
+- Booleans can be; `True`, `False` or `true`, `false`.
+- NoneTypes can be; `None`, `nil`, `null` or `NoneType`.
 
 ### Style Rules:
 - Values must be indented with tabs (or four spaces per indent).
