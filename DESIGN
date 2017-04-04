@@ -38,6 +38,7 @@ A multi-use Python based data storage format that aims to maintain transparency 
 - Values are declared under a header.
 - Headers can be declared under a parent header.
 - Single-line comments should have a space before them.
+- Data types must have a space after the colon.
 
 ### Example:
 ```rpds
