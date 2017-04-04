@@ -6,8 +6,7 @@ A multi-use Python based data storage format that aims to maintain transparency 
 and syntax.
 """
 
-from .load_file import *
-from .basic_interpreter import *
+from .load_file import load_file
 
 __author__ = "DeflatedPickle/Dibbo, Pytato"
 __copyright__ = "Copyright (c) 2017 Dibbo"
