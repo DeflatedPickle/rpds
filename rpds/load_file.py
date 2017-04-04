@@ -23,9 +23,15 @@ def load_file(file: str):
                 print("-----------------------------------------------------------------------------------------------")
             elif line.strip(" ").startswith("-"):
                 # The line is an item
-                item_type = line[line.index("<"):line.index(">") + 1]
+                try:
+                    item_type = line[line.index("<"):line.index(">") + 1]
+                except ValueError:
+                    item_type = "<string>"
                 print("Item Type: {}".format(item_type))
-                item_value = line[line.index(">") + 2:line.index(line[-1]) + 1].strip(" ")
+                try:
+                    item_value = line[line.index(">") + 2:line.index(line[-1]) + 1].strip(" ")
+                except ValueError:
+                    item_value = line[line.index("-") + 1:line.index(line[-1]) + 1].strip(" ")
                 print("Item Value: {}".format(item_value))
                 print("-----------------------------------------------------------------------------------------------")
 
