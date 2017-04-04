@@ -6,6 +6,7 @@ A multi-use Python based data storage format that aims to maintain transparency 
 and syntax.
 """
 
+from .load_file import *
 from .basic_interpreter import *
 
 __author__ = "DeflatedPickle/Dibbo, Pytato"
