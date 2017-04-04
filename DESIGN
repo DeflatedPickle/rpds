@@ -5,6 +5,10 @@ A multi-use Python based data storage format that aims to maintain transparency 
 - Figure out how the file will be loaded into Python.
 - Write basic classes.
 
+### File Extensions:
+- `.rpd`
+- `.rpds`
+
 ### Needs:
 - Headers.
 - Doc Strings for headers.
