@@ -1,10 +1,17 @@
 [name=Header]
     - <string>: value
     - <string>: value2
+
     [name=SubHeader]
     - <string>: value
     - <string>: value2
+
         [name=SubSubHeader]
         - <string>: value
         - <string>: value2
         - value3
+
+[name=DefaultDataType, type=<integer>]
+- 1
+- 2
+- <string>: value

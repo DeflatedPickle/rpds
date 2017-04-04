@@ -26,7 +26,7 @@ def load_file(file: str):
                 try:
                     item_type = line[line.index("<"):line.index(">") + 1]
                 except ValueError:
-                    item_type = "<string>"
+                    item_type = header_type
                 print("Item Type: {}".format(item_type))
                 try:
                     item_value = line[line.index(">") + 2:line.index(line[-1]) + 1].strip(" ")
