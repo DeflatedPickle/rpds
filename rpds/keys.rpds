@@ -5,7 +5,14 @@
 - "key": value4
 - "1": value5
 
-[name=Foobar]
+[name=Foobar, type=<string>]
 - "0": foo
 - "1": bar
 - "2": baz
+
+[name=NoKeys, key=<count>]
+- I'm a value
+- "sheep": I have a key
+- I lack a key
+- My key is my header
+- "crab": I have a key too

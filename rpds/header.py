@@ -4,9 +4,10 @@
 
 
 class Header(object):
-    def __init__(self, name: str, data_type: str):
+    def __init__(self, name: str, data_type: str, key: str):
         self.name = name
         self.data_type = data_type
+        self.key = key
         self.items = {}
 
     def __getitem__(self, item):

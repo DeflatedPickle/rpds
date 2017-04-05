@@ -13,32 +13,50 @@ def load_file(file: str):
         header_name = None
         header_type = None
         header = None
+        headers_count = 0
         for line in file_open.readlines():
             line = line.strip("\n")
             if line.strip(" ").startswith("[") and line.endswith("]"):
-                # The line is a header
+                # The line is a header.
+                headers_count = 0
                 header_name = line[line.index("name=") + 5:line.index(line[-1])]
                 # Sets the header name to the name found on the line.
-                if "," in header_name:
-                    header_name = header_name[0:header_name.index(",")]
-                    # Removes anything past a comma if one is found
+                if ", type=" in header_name:
+                    header_name = header_name[0:header_name.index(", type=")]
+                    # Removes the type from the name if found.
                 try:
                     header_type = line[line.index("type=") + 5:line.index(line[-1])]
                     # Sets the header type if one is found.
                 except ValueError:
                     header_type = "<string>"
                     # Sets the header type to "<string>" if none is found.
-                header = Header(header_name, header_type)
-                # header_list.append(header)
+                if ", key=" in header_name:
+                    header_name = header_name[0:header_name.index(", key=")]
+                    # Removes the key from the name if found.
+                elif ", key=" in header_type:
+                    header_type = header_type[0:header_type.index(", key=")]
+                    # Removes the key from the type if found.
+                try:
+                    header_key = line[line.index("key=") + 4:line.index(line[-1])]
+                    # Sets the key type if one is found.
+                except ValueError:
+                    header_key = "<count>"
+                    # Sets the key to "<count>" if none is found.
+                header = Header(header_name, header_type, header_key)
                 header_list[header_name] = header
             elif line.strip(" ").startswith("-"):
-                # The line is an item
+                # The line is an item.
                 try:
                     item_key = line[line.index('"') + 1:line.find('"', line.index('"') + 1)]
                     # Sets the items' key to the key on the line if one is found.
                 except ValueError:
-                    item_key = header_name
-                    # Sets the items key to the headers name if no key is found.
+                    if header_key == "<count>":
+                        item_key = str(headers_count)
+                        headers_count += 1
+                        # Sets the item's key to a counting number if no key is found and the headers key is "<count">
+                    else:
+                        item_key = header_name
+                        # Sets the item's key to the headers name if no key is found.
                 try:
                     item_type = line[line.index("<"):line.index(">") + 1]
                     # Sets the items type to the one on the line if one is found.
@@ -60,9 +78,8 @@ def load_file(file: str):
 
 if __name__ == "__main__":
     rpds_file = load_file("keys.rpds")
-    print(rpds_file["Header"]["bacon"])
-    print(rpds_file["Header"].item("bacon"))
-    # for file_header in rpds_file:
-    #     print(file_header.name)
-    #     for header_item in file_header.items:
-    #         print(header_item.value)
+    print(rpds_file["NoKeys"]["0"])
+    print(rpds_file["NoKeys"]["sheep"])
+    print(rpds_file["NoKeys"]["1"])
+    print(rpds_file["NoKeys"]["2"])
+    print(rpds_file["NoKeys"]["crab"])
