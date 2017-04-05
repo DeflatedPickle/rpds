@@ -13,12 +13,13 @@ def load_file(file: str):
         header_name = None
         header_type = None
         header = None
-        headers_count = 0
+        header_key = None
+        header_count = 0
         for line in file_open.readlines():
             line = line.strip("\n")
             if line.strip(" ").startswith("[") and line.endswith("]"):
                 # The line is a header.
-                headers_count = 0
+                header_count = 0
                 header_name = line[line.index("name=") + 5:line.index(line[-1])]
                 # Sets the header name to the name found on the line.
                 if ", type=" in header_name:
@@ -51,8 +52,8 @@ def load_file(file: str):
                     # Sets the items' key to the key on the line if one is found.
                 except ValueError:
                     if header_key == "<count>":
-                        item_key = str(headers_count)
-                        headers_count += 1
+                        item_key = str(header_count)
+                        header_count += 1
                         # Sets the item's key to a counting number if no key is found and the headers key is "<count">
                     else:
                         item_key = header_name
