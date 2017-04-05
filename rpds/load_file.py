@@ -9,7 +9,10 @@ from rpds.item import Item
 def load_file(file: str):
     """Loads a given file."""
     with open(file, "r") as file_open:
-        header_list = []
+        header_list = {}
+        header_name = None
+        header_type = None
+        header = None
         for line in file_open.readlines():
             line = line.strip("\n")
             if line.strip(" ").startswith("[") and line.endswith("]"):
@@ -26,7 +29,8 @@ def load_file(file: str):
                     header_type = "<string>"
                     # Sets the header type to "<string>" if none is found.
                 header = Header(header_name, header_type)
-                header_list.append(header)
+                # header_list.append(header)
+                header_list[header_name] = header
             elif line.strip(" ").startswith("-"):
                 # The line is an item
                 try:
@@ -50,13 +54,15 @@ def load_file(file: str):
                     item_value = line[second + 2:line.index(line[-1]) + 1].strip(" ")
                     # Sets the item value if a type is found.
                 item = Item(item_key, item_type, item_value)
-                header.items.append(item)
+                header.items[item_key] = item
     return header_list
 
 
 if __name__ == "__main__":
     rpds_file = load_file("keys.rpds")
-    for file_header in rpds_file:
-        print(file_header.name)
-        for header_item in file_header.items:
-            print(header_item.value)
+    print(rpds_file["Header"]["bacon"])
+    print(rpds_file["Header"].item("bacon"))
+    # for file_header in rpds_file:
+    #     print(file_header.name)
+    #     for header_item in file_header.items:
+    #         print(header_item.value)

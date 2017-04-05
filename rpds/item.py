@@ -8,3 +8,6 @@ class Item(object):
         self.key = key
         self.data_type = data_type
         self.value = value
+
+    def __repr__(self):
+        return self.value
