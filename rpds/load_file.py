@@ -24,6 +24,7 @@ def load_file(file: str):
                 except ValueError:
                     header_type = "<string>"
                 header = Header(header_name, header_type)
+                header_list.append(header)
                 # print("Header Type: {}".format(header_type))
                 # print("-----------------------------------------------------------------------------------------------")
             elif line.strip(" ").startswith("-"):
@@ -50,14 +51,19 @@ def load_file(file: str):
                 header.items.append(item)
                 # print("Item Value: {}".format(item_value))
                 # print("-----------------------------------------------------------------------------------------------")
-            header_list.append(header)
+            # header_list.append(header)
     # for header in header_list:
     #     print(header.name, header.data_type)
     #     print("-------------------")
     #     for item in header.items:
     #         print(item.key, item.data_type, item.value)
     #     print("-----------------------------------------------------------------------------------------------")
+    return header_list
 
 
 if __name__ == "__main__":
-    load_file("keys.rpds")
+    file = load_file("keys.rpds")
+    for header in file:
+        print(header.name)
+        for item in header.items:
+            print(item.value)
