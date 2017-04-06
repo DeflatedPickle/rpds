@@ -11,13 +11,17 @@ def load_file(file: str):
     with open(file, "r") as file_open:
         header_list = {}
         header_name = None
+        header_docstring = None
         header_type = None
         header = None
         header_key = None
         header_count = 0
         for line in file_open.readlines():
             line = line.strip("\n")
-            if line.strip(" ").startswith("[") and line.endswith("]"):
+            if line.strip(" ").startswith('"""') and line.endswith('"""'):
+                # This line is a docstring.
+                header_docstring = line[3:-3]
+            elif line.strip(" ").startswith("[") and line.endswith("]"):
                 # The line is a header.
                 header_count = 0
                 header_name = line[line.index("name=") + 5:line.index(line[-1])]
@@ -43,7 +47,7 @@ def load_file(file: str):
                 except ValueError:
                     header_key = "<count>"
                     # Sets the key to "<count>" if none is found.
-                header = Header(header_name, header_type, header_key)
+                header = Header(header_name, header_docstring, header_type, header_key)
                 header_list[header_name] = header
             elif line.strip(" ").startswith("-"):
                 # The line is an item.
@@ -79,6 +83,8 @@ def load_file(file: str):
 
 if __name__ == "__main__":
     rpds_file = load_file("keys.rpds")
+    print(rpds_file["NoKeys"])
+    print(rpds_file["NoKeys"].docstring)
     print(rpds_file["NoKeys"]["0"])
     print(rpds_file["NoKeys"]["sheep"])
     print(rpds_file["NoKeys"]["1"])
