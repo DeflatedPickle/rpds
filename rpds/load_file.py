@@ -96,7 +96,7 @@ def load_file(file: str):
 if __name__ == "__main__":
     rpds_file = load_file("keys.rpds")
     print(rpds_file["NoKeys"])
-    print(rpds_file["Foobar"].docstring)
+    print(rpds_file["NoKeys"].docstring)
     print(rpds_file["NoKeys"]["0"])
     print(rpds_file["NoKeys"]["sheep"])
     print(rpds_file["NoKeys"]["1"])
