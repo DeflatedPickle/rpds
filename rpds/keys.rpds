@@ -2,16 +2,20 @@
 """This header is cool."""
 - "bacon": value
 - "santa": <string>: value2
+// Comment
 - value3
 - "key": value4
+# Comment
 - "1": value5
 
 [name=Foobar, type=<string>]
+"""Hello"""
 - "0": foo
 - "1": bar
 - "2": baz
 
 [name=NoKeys, key=<count>]
+"""Bye"""
 - I'm a value // This is a cool comment!
 - "sheep": I have a key # This is a different comment!
 - I lack a key
