@@ -76,7 +76,16 @@ def load_file(file: str):
                 else:
                     item_value = line[second + 2:line.index(line[-1]) + 1].strip(" ")
                     # Sets the item value if a type is found.
-                item = Item(item_key, item_type, item_value)
+                item_comment = None
+                if "//" in item_value:
+                    # Removes a C-style comment if one is found.
+                    item_comment = item_value[item_value.index("//") + 2:line.index(line[-1]) + 1].strip(" ")
+                    item_value = item_value[0:item_value.index("//")]
+                if "#" in item_value:
+                    # Removes a Python-style comment if one is found.
+                    item_comment = item_value[item_value.index("#") + 1:line.index(line[-1]) + 1].strip(" ")
+                    item_value = item_value[0:item_value.index("#")]
+                item = Item(item_key, item_type, item_value, item_comment)
                 header.items[item_key] = item
     return header_list
 
